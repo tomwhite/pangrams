@@ -74,6 +74,18 @@ public class Pangrams {
         .toArray(new int[0][0]);
   }
 
+  public static final int[][][] PROFILE_DELTAS = computeProfileDeltas();
+
+  private static int[][][] computeProfileDeltas() {
+    int[][][] deltas = new int[PROFILES.length][PROFILES.length][SIZE];
+    for (int i = 0; i < PROFILES.length; i++) {
+      for (int j = 0; j < PROFILES.length; j++) {
+        deltas[i][j] = minus(copy(PROFILES[j]), PROFILES[i]);
+      }
+    }
+    return deltas;
+  }
+
   public static int[] columnTotals(int[] rows, int[] additionalLetters) {
     int[] p = copy(additionalLetters);
     for (int r : rows) {
@@ -83,44 +95,99 @@ public class Pangrams {
   }
   
   public static int[] search(int[] rowStarts, int[] rowEnds, int[] additionalLetters) {
+    long startTime = System.nanoTime();
     int count = 0;
-    int[] rows = new int[SIZE];
+    int[] rows = copy(rowStarts);
+    int[] cols = columnTotals(rows, additionalLetters);
     for (int i0 = rowStarts[0]; i0 <= rowEnds[0]; i0++) {
-      rows[0] = i0;
+      if (rows[0] != i0) {
+        add(cols, PROFILE_DELTAS[rows[0]][i0]);
+        rows[0] = i0;
+      }
       for (int i1 = rowStarts[1]; i1 <= rowEnds[1]; i1++) {
-        rows[1] = i1;
+        if (rows[1] != i1) {
+          add(cols, PROFILE_DELTAS[rows[1]][i1]);
+          rows[1] = i1;
+        }
         for (int i2 = rowStarts[2]; i2 <= rowEnds[2]; i2++) {
-          rows[2] = i2;
+          if (rows[2] != i2) {
+            add(cols, PROFILE_DELTAS[rows[2]][i2]);
+            rows[2] = i2;
+          }
           for (int i3 = rowStarts[3]; i3 <= rowEnds[3]; i3++) {
-            rows[3] = i3;
+            if (rows[3] != i3) {
+              add(cols, PROFILE_DELTAS[rows[3]][i3]);
+              rows[3] = i3;
+            }
             for (int i4 = rowStarts[4]; i4 <= rowEnds[4]; i4++) {
-              rows[4] = i4;
+              if (rows[4] != i4) {
+                add(cols, PROFILE_DELTAS[rows[4]][i4]);
+                rows[4] = i4;
+              }
               for (int i5 = rowStarts[5]; i5 <= rowEnds[5]; i5++) {
-                rows[5] = i5;
+                if (rows[5] != i5) {
+                  add(cols, PROFILE_DELTAS[rows[5]][i5]);
+                  rows[5] = i5;
+                }
                 for (int i6 = rowStarts[6]; i6 <= rowEnds[6]; i6++) {
-                  rows[6] = i6;
+                  if (rows[6] != i6) {
+                    add(cols, PROFILE_DELTAS[rows[6]][i6]);
+                    rows[6] = i6;
+                  }
                   for (int i7 = rowStarts[7]; i7 <= rowEnds[7]; i7++) {
-                    rows[7] = i7;
+                    if (rows[7] != i7) {
+                      add(cols, PROFILE_DELTAS[rows[7]][i7]);
+                      rows[7] = i7;
+                    }
                     for (int i8 = rowStarts[8]; i8 <= rowEnds[8]; i8++) {
-                      rows[8] = i8;
+                      if (rows[8] != i8) {
+                        add(cols, PROFILE_DELTAS[rows[8]][i8]);
+                        rows[8] = i8;
+                      }
                       for (int i9 = rowStarts[9]; i9 <= rowEnds[9]; i9++) {
-                        rows[9] = i9;
+                        if (rows[9] != i9) {
+                          add(cols, PROFILE_DELTAS[rows[9]][i9]);
+                          rows[9] = i9;
+                        }
                         for (int i10 = rowStarts[10]; i10 <= rowEnds[10]; i10++) {
-                          rows[10] = i10;
+                          if (rows[10] != i10) {
+                            add(cols, PROFILE_DELTAS[rows[10]][i10]);
+                            rows[10] = i10;
+                          }
                           for (int i11 = rowStarts[11]; i11 <= rowEnds[11]; i11++) {
-                            rows[11] = i11;
+                            if (rows[11] != i11) {
+                              add(cols, PROFILE_DELTAS[rows[11]][i11]);
+                              rows[11] = i11;
+                            }
                             for (int i12 = rowStarts[12]; i12 <= rowEnds[12]; i12++) {
-                              rows[12] = i12;
+                              if (rows[12] != i12) {
+                                add(cols, PROFILE_DELTAS[rows[12]][i12]);
+                                rows[12] = i12;
+                              }
                               for (int i13 = rowStarts[13]; i13 <= rowEnds[13]; i13++) {
-                                rows[13] = i13;
+                                if (rows[13] != i13) {
+                                  add(cols, PROFILE_DELTAS[rows[13]][i13]);
+                                  rows[13] = i13;
+                                }
                                 for (int i14 = rowStarts[14]; i14 <= rowEnds[14]; i14++) {
-                                  rows[14] = i14;
+                                  if (rows[14] != i14) {
+                                    add(cols, PROFILE_DELTAS[rows[14]][i14]);
+                                    rows[14] = i14;
+                                  }
                                   for (int i15 = rowStarts[15]; i15 <= rowEnds[15]; i15++) {
-                                    rows[15] = i15;
-                                    int[] cols = columnTotals(rows, additionalLetters);
+                                    if (rows[15] != i15) {
+                                      add(cols, PROFILE_DELTAS[rows[15]][i15]);
+                                      rows[15] = i15;
+                                    }
+
                                     count++;
                                     if (equals(rows, cols)) {
                                       System.out.println(count);
+                                      long endTime = System.nanoTime();
+                                      System.out.println("Time (pangrams/s): " + 1.0 *
+                                          1_000_000_000 *
+                                          count /
+                                          (endTime - startTime));
                                       return rows;
                                     }
                                   }

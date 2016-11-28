@@ -3,7 +3,6 @@ package com.tom_e_white.pangrams;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class PangramsTest {
   @Test
