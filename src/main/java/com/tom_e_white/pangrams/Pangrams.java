@@ -95,6 +95,12 @@ public class Pangrams {
   }
   
   public static int[] search(int[] rowStarts, int[] rowEnds, int[] additionalLetters) {
+    double searchSpaceSize = 1;
+    for (int i = 0; i < SIZE; i++) {
+      searchSpaceSize *= rowEnds[i] - rowStarts[i] + 1;
+    }
+    System.out.println("Search space size: " + searchSpaceSize);
+
     long startTime = System.nanoTime();
     int count = 0;
     int[] rows = copy(rowStarts);
