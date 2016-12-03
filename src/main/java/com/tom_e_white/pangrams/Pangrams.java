@@ -131,7 +131,7 @@ public class Pangrams {
     System.out.println("Search space size: " + searchSpaceSize);
 
     long startTime = System.nanoTime();
-    int count = 0;
+    long count = 0;
     int[] rows = copy(rowStarts);
     int[] cols = columnTotals(rows, additionalLetters);
     for (int i0 = rowStarts[0]; i0 <= rowEnds[0]; i0++) {
@@ -257,6 +257,11 @@ public class Pangrams {
         }
       }
     }
+    long endTime = System.nanoTime();
+    System.out.println("Time (pangrams/s): " + 1.0 *
+        1_000_000_000 *
+        count /
+        (endTime - startTime));
     return null;
   }
 }
