@@ -1,8 +1,16 @@
 package com.tom_e_white.pangrams;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+// TODO: try something like MTJ to get better perf:
+// https://github.com/fommil/matrix-toolkits-java/blob/master/src/main/java/no/uib/cipr/matrix/Vector.java
+// although doesn't seem to have anything native...
+// similarly for jblas: http://mikiobraun.github.io/jblas/javadoc/index.html "jblas therefore uses Java implementation for things like vector addition"
 public class Pangrams {
 
   private static final char[] PROFILE_LETTERS = new char[] {
@@ -35,11 +43,7 @@ public class Pangrams {
   }
 
   public static int[] copy(int[] p) {
-    int[] copy = new int[SIZE];
-    for (int i = 0; i < SIZE; i++) {
-      copy[i] = p[i];
-    }
-    return copy;
+    return Arrays.copyOf(p, p.length);
   }
 
 
@@ -93,6 +97,28 @@ public class Pangrams {
     }
     return p;
   }
+
+  public static int[] dependents(int rowStart, int rowEnd, char letter) {
+    int letterIndex = Arrays.binarySearch(PROFILE_LETTERS, letter);
+    Set<Integer> deps = new TreeSet<>();
+    for (int i = rowStart; i <= rowEnd; i++) {
+      if (PROFILES[i][letterIndex] == 0) {
+        deps.add(-1);
+      } else {
+        deps.add(i);
+      }
+    }
+    int[] depsArray = new int[deps.size()];
+    int i = 0;
+    for (int dep : deps) {
+      depsArray[i++] = dep;
+    }
+    return depsArray;
+  }
+
+  public static void dump(int[] i) {
+    System.out.println(Arrays.toString(i));
+  }
   
   public static int[] search(int[] rowStarts, int[] rowEnds, int[] additionalLetters) {
     double searchSpaceSize = 1;
@@ -100,6 +126,8 @@ public class Pangrams {
       searchSpaceSize *= rowEnds[i] - rowStarts[i] + 1;
     }
     System.out.println("Search space size: " + searchSpaceSize);
+
+    int[] deps15 = dependents(rowStarts[15], rowEnds[15], 'y');
 
     long startTime = System.nanoTime();
     int count = 0;
@@ -180,10 +208,17 @@ public class Pangrams {
                                     add(cols, PROFILE_DELTAS[rows[14]][i14]);
                                     rows[14] = i14;
                                   }
-                                  for (int i15 = rowStarts[15]; i15 <= rowEnds[15]; i15++) {
-                                    if (rows[15] != i15) {
+                                  for (int i15 : deps15) {
+                                    if (i15 != -1 && rows[15] != i15) {
                                       add(cols, PROFILE_DELTAS[rows[15]][i15]);
                                       rows[15] = i15;
+                                    }
+
+                                    if (i15 == -1) {
+                                      // count number of y's
+                                      int numYs = cols[15];
+                                      add(cols, PROFILE_DELTAS[rows[15]][numYs]);
+                                      rows[15] = numYs;
                                     }
 
                                     count++;
