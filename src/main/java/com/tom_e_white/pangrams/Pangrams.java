@@ -123,11 +123,12 @@ public class Pangrams {
   public static int[] search(int[] rowStarts, int[] rowEnds, int[] additionalLetters) {
     double searchSpaceSize = 1;
     for (int i = 0; i < SIZE; i++) {
+      if (i == 2 || i == 5 || i == 15) {
+        continue;
+      }
       searchSpaceSize *= rowEnds[i] - rowStarts[i] + 1;
     }
     System.out.println("Search space size: " + searchSpaceSize);
-
-    int[] deps15 = dependents(rowStarts[15], rowEnds[15], 'y');
 
     long startTime = System.nanoTime();
     int count = 0;
@@ -143,11 +144,11 @@ public class Pangrams {
           add(cols, PROFILE_DELTAS[rows[1]][i1]);
           rows[1] = i1;
         }
-        for (int i2 = rowStarts[2]; i2 <= rowEnds[2]; i2++) {
-          if (rows[2] != i2) {
-            add(cols, PROFILE_DELTAS[rows[2]][i2]);
-            rows[2] = i2;
-          }
+//        for (int i2 = rowStarts[2]; i2 <= rowEnds[2]; i2++) {
+//          if (rows[2] != i2) {
+//            add(cols, PROFILE_DELTAS[rows[2]][i2]);
+//            rows[2] = i2;
+//          }
           for (int i3 = rowStarts[3]; i3 <= rowEnds[3]; i3++) {
             if (rows[3] != i3) {
               add(cols, PROFILE_DELTAS[rows[3]][i3]);
@@ -158,11 +159,11 @@ public class Pangrams {
                 add(cols, PROFILE_DELTAS[rows[4]][i4]);
                 rows[4] = i4;
               }
-              for (int i5 = rowStarts[5]; i5 <= rowEnds[5]; i5++) {
-                if (rows[5] != i5) {
-                  add(cols, PROFILE_DELTAS[rows[5]][i5]);
-                  rows[5] = i5;
-                }
+//              for (int i5 = rowStarts[5]; i5 <= rowEnds[5]; i5++) {
+//                if (rows[5] != i5) {
+//                  add(cols, PROFILE_DELTAS[rows[5]][i5]);
+//                  rows[5] = i5;
+//                }
                 for (int i6 = rowStarts[6]; i6 <= rowEnds[6]; i6++) {
                   if (rows[6] != i6) {
                     add(cols, PROFILE_DELTAS[rows[6]][i6]);
@@ -203,36 +204,45 @@ public class Pangrams {
                                   add(cols, PROFILE_DELTAS[rows[13]][i13]);
                                   rows[13] = i13;
                                 }
-                                for (int i14 = rowStarts[14]; i14 <= rowEnds[14]; i14++) {
-                                  if (rows[14] != i14) {
-                                    add(cols, PROFILE_DELTAS[rows[14]][i14]);
-                                    rows[14] = i14;
-                                  }
-                                  for (int i15 : deps15) {
-                                    if (i15 != -1 && rows[15] != i15) {
-                                      add(cols, PROFILE_DELTAS[rows[15]][i15]);
-                                      rows[15] = i15;
-                                    }
+//                                for (int i14 = rowStarts[14]; i14 <= rowEnds[14]; i14++) {
+//                                  if (rows[14] != i14) {
+//                                    add(cols, PROFILE_DELTAS[rows[14]][i14]);
+//                                    rows[14] = i14;
+//                                  }
 
-                                    if (i15 == -1) {
-                                      // count number of y's
-                                      int numYs = cols[15];
-                                      add(cols, PROFILE_DELTAS[rows[15]][numYs]);
-                                      rows[15] = numYs;
-                                    }
+                                  // inner loop
 
-                                    count++;
-                                    if (equals(rows, cols)) {
-                                      System.out.println(count);
-                                      long endTime = System.nanoTime();
-                                      System.out.println("Time (pangrams/s): " + 1.0 *
-                                          1_000_000_000 *
-                                          count /
-                                          (endTime - startTime));
-                                      return rows;
-                                    }
+                                  // count number of g's
+                                  int numGs = cols[2];
+                                  add(cols, PROFILE_DELTAS[rows[2]][numGs]);
+                                  rows[2] = numGs;
+
+                                  // count number of l's
+                                  int numLs = cols[5];
+                                  add(cols, PROFILE_DELTAS[rows[5]][numLs]);
+                                  rows[5] = numLs;
+
+                                  // count number of x's
+                                  int numXs = cols[14];
+                                  add(cols, PROFILE_DELTAS[rows[14]][numXs]);
+                                  rows[14] = numXs;
+
+                                  // count number of y's
+                                  int numYs = cols[15];
+                                  add(cols, PROFILE_DELTAS[rows[15]][numYs]);
+                                  rows[15] = numYs;
+
+                                  count++;
+                                  if (equals(rows, cols)) {
+                                    System.out.println(count);
+                                    long endTime = System.nanoTime();
+                                    System.out.println("Time (pangrams/s): " + 1.0 *
+                                        1_000_000_000 *
+                                        count /
+                                        (endTime - startTime));
+                                    return rows;
                                   }
-                                }
+                                //}
                               }
                             }
                           }
@@ -240,10 +250,10 @@ public class Pangrams {
                       }
                     }
                   }
-                }
+                //}
               }
             }
-          }
+          //}
         }
       }
     }
