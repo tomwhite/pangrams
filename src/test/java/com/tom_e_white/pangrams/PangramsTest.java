@@ -3,6 +3,7 @@ package com.tom_e_white.pangrams;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 
 public class PangramsTest {
   @Test
@@ -64,11 +65,32 @@ public class PangramsTest {
         "This pangram contains four a's, one b, two c's, one d, ? e's, ? f's, ? g's, " +
             "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
             "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, & one z.";
-    int[] rowStarts = { 23,  1,  1,  1,  6, 2, 18, 15, 5, 27, 18, 2, 7, 8, 2, 3 };
-    int[] rowEnds =   { 32, 10, 10, 10, 15, 2, 18, 15, 5, 27, 18, 2, 7, 8, 2, 3 };
+    int[] rowStarts = { 23,  1,  1,  1,  6, 2, 18, 15, 5, 27, 18, 2, 7, 8, 2, 2 };
+    int[] rowEnds =   { 32, 10, 10, 10, 15, 2, 18, 15, 5, 27, 18, 2, 7, 8, 2, 5 };
     int[] extra =  Pangrams.profile(pangramTemplate);
     int[] rows =   { 30, 6, 5, 7, 11, 2, 18, 15, 5, 27, 18, 2, 7, 8, 2, 3 };
     assertArrayEquals(rows, Pangrams.search(rowStarts, rowEnds, extra));
+  }
+
+  @Test
+  public void testDependents() {
+    // 'eleven' and 'twelve' both contain an 'l'
+    assertArrayEquals(new int[] { 11, 12 }, Pangrams.dependents(11, 12, 'l'));
+    // 'ten' and 'thirteen' don't contain an 'l'
+    assertArrayEquals(new int[] { -1, 11, 12 }, Pangrams.dependents(10, 13, 'l'));
+    // 'three', 'four', and 'five' don't contain a 'y'
+    assertArrayEquals(new int[] { -1 }, Pangrams.dependents(3, 5, 'y'));
+  }
+
+  @Test
+  public void testIsPerfectPangram() {
+    String pangram =
+        "This pangram lists four a’s, one b, one c, two d’s, twenty-nine e’s, eight f’s," +
+        " three g’s, five h’s, eleven i’s, one j, one k, three l’s, two m’s, twenty-two" +
+        " n’s, fifteen o’s, two p’s, one q, seven r’s, twenty-six s’s, nineteen t’s, " +
+        "four u’s, five v’s, nine w’s, two x’s, four y’s, and one z."
+
+    assertTrue(Pangrams.isPerfectPangram(pangram));
   }
 
 }

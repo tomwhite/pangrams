@@ -1,8 +1,16 @@
 package com.tom_e_white.pangrams;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+// TODO: try something like MTJ to get better perf:
+// https://github.com/fommil/matrix-toolkits-java/blob/master/src/main/java/no/uib/cipr/matrix/Vector.java
+// although doesn't seem to have anything native...
+// similarly for jblas: http://mikiobraun.github.io/jblas/javadoc/index.html "jblas therefore uses Java implementation for things like vector addition"
 public class Pangrams {
 
   private static final char[] PROFILE_LETTERS = new char[] {
@@ -10,6 +18,23 @@ public class Pangrams {
   };
 
   private static final int SIZE = PROFILE_LETTERS.length;
+
+  private static final char[] ALL_LETTERS = new char[] {
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+      'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+  };
+
+  private static final String[] NUMBER_WORDS = new String[]{
+      "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+      "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+      "seventeen", "eighteen", "nineteen",
+      "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four",
+      "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine",
+      "thirty", "thirty-one", "thirty-two", "thirty-three", "thirty-four",
+      "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine",
+      "forty", "forty-one", "forty-two", "forty-three", "forty-four",
+      "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine",
+  };
 
   public static boolean equals(int[] p1, int[] p2) {
     for (int i = 0; i < SIZE; i++) {
@@ -35,13 +60,8 @@ public class Pangrams {
   }
 
   public static int[] copy(int[] p) {
-    int[] copy = new int[SIZE];
-    for (int i = 0; i < SIZE; i++) {
-      copy[i] = p[i];
-    }
-    return copy;
+    return Arrays.copyOf(p, p.length);
   }
-
 
   public static int[] profile(String s) {
     int[] p = new int[SIZE];
@@ -57,21 +77,20 @@ public class Pangrams {
   public static final int[][] PROFILES = computeProfiles();
 
   private static int[][] computeProfiles() {
-    String[] numbers = {
-      "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
-        "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
-        "seventeen", "eighteen", "nineteen",
-        "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four",
-        "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine",
-        "thirty", "thirty-one", "thirty-two", "thirty-three", "thirty-four",
-        "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine",
-        "forty", "forty-one", "forty-two", "forty-three", "forty-four",
-        "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine",
-    };
-    return Arrays.stream(numbers)
+    return Arrays.stream(NUMBER_WORDS)
         .map(Pangrams::profile)
         .collect(Collectors.toList())
         .toArray(new int[0][0]);
+  }
+
+  public static boolean isPerfectPangram(String p) {
+    int[] declaredCounts;
+    for (char l : ALL_LETTERS) {
+      if (p.matches("one " + l)) {
+        // 1, but check it's not 's
+      }
+    }
+    return false;
   }
 
   public static final int[][][] PROFILE_DELTAS = computeProfileDeltas();
@@ -93,6 +112,28 @@ public class Pangrams {
     }
     return p;
   }
+
+  public static int[] dependents(int rowStart, int rowEnd, char letter) {
+    int letterIndex = Arrays.binarySearch(PROFILE_LETTERS, letter);
+    Set<Integer> deps = new TreeSet<>();
+    for (int i = rowStart; i <= rowEnd; i++) {
+      if (PROFILES[i][letterIndex] == 0) {
+        deps.add(-1);
+      } else {
+        deps.add(i);
+      }
+    }
+    int[] depsArray = new int[deps.size()];
+    int i = 0;
+    for (int dep : deps) {
+      depsArray[i++] = dep;
+    }
+    return depsArray;
+  }
+
+  public static void dump(int[] i) {
+    System.out.println(Arrays.toString(i));
+  }
   
   public static int[] search(int[] rowStarts, int[] rowEnds, int[] additionalLetters) {
     double searchSpaceSize = 1;
@@ -100,6 +141,8 @@ public class Pangrams {
       searchSpaceSize *= rowEnds[i] - rowStarts[i] + 1;
     }
     System.out.println("Search space size: " + searchSpaceSize);
+
+    int[] deps15 = dependents(rowStarts[15], rowEnds[15], 'y');
 
     long startTime = System.nanoTime();
     int count = 0;
@@ -180,10 +223,17 @@ public class Pangrams {
                                     add(cols, PROFILE_DELTAS[rows[14]][i14]);
                                     rows[14] = i14;
                                   }
-                                  for (int i15 = rowStarts[15]; i15 <= rowEnds[15]; i15++) {
-                                    if (rows[15] != i15) {
+                                  for (int i15 : deps15) {
+                                    if (i15 != -1 && rows[15] != i15) {
                                       add(cols, PROFILE_DELTAS[rows[15]][i15]);
                                       rows[15] = i15;
+                                    }
+
+                                    if (i15 == -1) {
+                                      // count number of y's
+                                      int numYs = cols[15];
+                                      add(cols, PROFILE_DELTAS[rows[15]][numYs]);
+                                      rows[15] = numYs;
                                     }
 
                                     count++;
