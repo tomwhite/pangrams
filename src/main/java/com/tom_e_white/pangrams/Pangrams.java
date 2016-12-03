@@ -19,7 +19,7 @@ public class Pangrams {
 
   private static final int SIZE = PROFILE_LETTERS.length;
 
-  public static boolean equals(int[] p1, int[] p2) {
+  private static boolean equals(int[] p1, int[] p2) {
     for (int i = 0; i < SIZE; i++) {
       if (p1[i] != p2[i]) {
         return false;
@@ -28,21 +28,21 @@ public class Pangrams {
     return true;
   }
 
-  public static int[] add(int[] p1, int[] p2) {
+  private static int[] add(int[] p1, int[] p2) {
     for (int i = 0; i < SIZE; i++) {
       p1[i] = p1[i] + p2[i];
     }
     return p1;
   }
 
-  public static int[] minus(int[] p1, int[] p2) {
+  private static int[] minus(int[] p1, int[] p2) {
     for (int i = 0; i < SIZE; i++) {
       p1[i] = p1[i] - p2[i];
     }
     return p1;
   }
 
-  public static int[] copy(int[] p) {
+  private static int[] copy(int[] p) {
     return Arrays.copyOf(p, p.length);
   }
 
@@ -123,7 +123,7 @@ public class Pangrams {
   public static int[] search(int[] rowStarts, int[] rowEnds, int[] additionalLetters) {
     double searchSpaceSize = 1;
     for (int i = 0; i < SIZE; i++) {
-      if (i == 2 || i == 5 || i == 15) {
+      if (i == 2 || i == 5 || i == 14 || i == 15) {
         continue;
       }
       searchSpaceSize *= rowEnds[i] - rowStarts[i] + 1;
