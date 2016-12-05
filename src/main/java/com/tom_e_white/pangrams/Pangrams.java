@@ -28,11 +28,10 @@ public class Pangrams {
     return true;
   }
 
-  private static int[] add(int[] p1, int[] p2) {
+  private static void add(int[] p1, int[] p2) {
     for (int i = 0; i < SIZE; i++) {
       p1[i] = p1[i] + p2[i];
     }
-    return p1;
   }
 
   private static int[] minus(int[] p1, int[] p2) {
