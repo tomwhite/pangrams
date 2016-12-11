@@ -1,10 +1,7 @@
 package com.tom_e_white.pangrams;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -23,6 +20,17 @@ public class Pangrams {
   private static final char[] ALL_LETTERS = new char[] {
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+  };
+  public static final String[] NUMBERS = new String[]{
+          "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+          "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+          "seventeen", "eighteen", "nineteen",
+          "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four",
+          "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine",
+          "thirty", "thirty-one", "thirty-two", "thirty-three", "thirty-four",
+          "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine",
+          "forty", "forty-one", "forty-two", "forty-three", "forty-four",
+          "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine",
   };
 
   private static boolean equals(int[] p1, int[] p2) {
@@ -51,14 +59,48 @@ public class Pangrams {
     return Arrays.copyOf(p, p.length);
   }
 
-  public static boolean isPerfectPangram(String p) {
-    for (char l : ALL_LETTERS) {
-      Pattern.compile("[^] " + l + "'s");
-      if (p.matches("one " + l)) {
-        // 1
+  private static int parseNumber(String n) {
+    for (int i = 0; i < NUMBERS.length; i++) {
+      if (NUMBERS[i].equals(n)) {
+        return i;
       }
     }
-    return false;
+    throw new IllegalArgumentException("Number not recognized: " + n);
+  }
+
+  public static int[] count(String s) {
+    int[] p = new int[26];
+    for (char c : s.toCharArray()) {
+      int i = Arrays.binarySearch(ALL_LETTERS, Character.toLowerCase(c));
+      if (i >= 0) {
+        p[i]++;
+      }
+    }
+    return p;
+  }
+
+  public static boolean isPerfectPangram(String p) {
+    String candidate = p.toLowerCase();
+    int[] declaredCounts = new int[26];
+    for (int i = 0; i < 26; i++) {
+      char l = ALL_LETTERS[i];
+      Pattern pattern = Pattern.compile("([a-z\\-]+) " + l + "'s");
+      Matcher matcher = pattern.matcher(candidate);
+      int number;
+      if (matcher.find()) {
+        String englishNumber = matcher.group(1);
+        if ("one".equals(englishNumber)) {
+          throw new IllegalArgumentException("Grammatical error: " + matcher.group());
+        }
+        number = parseNumber(englishNumber);
+      } else if (candidate.contains("one " + l)) {
+        number = 1;
+      } else {
+        throw new IllegalArgumentException("Missing count for " + l);
+      }
+      declaredCounts[i] = number;
+    }
+    return Arrays.equals(declaredCounts, count(p));
   }
 
   public static int[] profile(String s) {
@@ -75,18 +117,7 @@ public class Pangrams {
   public static final int[][] PROFILES = computeProfiles();
 
   private static int[][] computeProfiles() {
-    String[] numbers = {
-      "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
-        "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
-        "seventeen", "eighteen", "nineteen",
-        "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four",
-        "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine",
-        "thirty", "thirty-one", "thirty-two", "thirty-three", "thirty-four",
-        "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine",
-        "forty", "forty-one", "forty-two", "forty-three", "forty-four",
-        "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine",
-    };
-    return Arrays.stream(numbers)
+    return Arrays.stream(NUMBERS)
         .map(Pangrams::profile)
         .collect(Collectors.toList())
         .toArray(new int[0][0]);

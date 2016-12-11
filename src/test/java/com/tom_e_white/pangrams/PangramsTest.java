@@ -9,10 +9,10 @@ public class PangramsTest {
   @Test
   public void testIsPerfectPangram() {
     String pangram =
-        "This pangram lists four a’s, one b, one c, two d’s, twenty-nine e’s, eight f’s," +
-        " three g’s, five h’s, eleven i’s, one j, one k, three l’s, two m’s, twenty-two" +
-        " n’s, fifteen o’s, two p’s, one q, seven r’s, twenty-six s’s, nineteen t’s, " +
-        "four u’s, five v’s, nine w’s, two x’s, four y’s, and one z.";
+        "This pangram lists four a's, one b, one c, two d's, twenty-nine e's, eight f's," +
+        " three g's, five h's, eleven i's, one j, one k, three l's, two m's, twenty-two" +
+        " n's, fifteen o's, two p's, one q, seven r's, twenty-six s's, nineteen t's, " +
+        "four u's, five v's, nine w's, two x's, four y's, and one z.";
     assertTrue(Pangrams.isPerfectPangram(pangram));
   }
 
