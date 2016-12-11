@@ -21,16 +21,17 @@ public class Pangrams {
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
   };
-  public static final String[] NUMBERS = new String[]{
-          "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
-          "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
-          "seventeen", "eighteen", "nineteen",
-          "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four",
-          "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine",
-          "thirty", "thirty-one", "thirty-two", "thirty-three", "thirty-four",
-          "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine",
-          "forty", "forty-one", "forty-two", "forty-three", "forty-four",
-          "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine",
+
+  private static final String[] NUMBERS = new String[]{
+    "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+    "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+    "seventeen", "eighteen", "nineteen",
+    "twenty", "twenty-one", "twenty-two", "twenty-three", "twenty-four",
+    "twenty-five", "twenty-six", "twenty-seven", "twenty-eight", "twenty-nine",
+    "thirty", "thirty-one", "thirty-two", "thirty-three", "thirty-four",
+    "thirty-five", "thirty-six", "thirty-seven", "thirty-eight", "thirty-nine",
+    "forty", "forty-one", "forty-two", "forty-three", "forty-four",
+    "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine",
   };
 
   private static boolean equals(int[] p1, int[] p2) {
@@ -81,8 +82,8 @@ public class Pangrams {
 
   public static boolean isPerfectPangram(String p) {
     String candidate = p.toLowerCase();
-    int[] declaredCounts = new int[26];
-    for (int i = 0; i < 26; i++) {
+    int[] declaredCounts = new int[ALL_LETTERS.length];
+    for (int i = 0; i < ALL_LETTERS.length; i++) {
       char l = ALL_LETTERS[i];
       Pattern pattern = Pattern.compile("([a-z\\-]+) " + l + "'s");
       Matcher matcher = pattern.matcher(candidate);
