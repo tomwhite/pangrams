@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 // TODO: try something like MTJ to get better perf:
@@ -18,6 +19,11 @@ public class Pangrams {
   };
 
   private static final int SIZE = PROFILE_LETTERS.length;
+
+  private static final char[] ALL_LETTERS = new char[] {
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+  };
 
   private static boolean equals(int[] p1, int[] p2) {
     for (int i = 0; i < SIZE; i++) {
@@ -45,6 +51,15 @@ public class Pangrams {
     return Arrays.copyOf(p, p.length);
   }
 
+  public static boolean isPerfectPangram(String p) {
+    for (char l : ALL_LETTERS) {
+      Pattern.compile("[^] " + l + "'s");
+      if (p.matches("one " + l)) {
+        // 1
+      }
+    }
+    return false;
+  }
 
   public static int[] profile(String s) {
     int[] p = new int[SIZE];
