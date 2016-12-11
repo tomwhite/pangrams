@@ -80,8 +80,9 @@ public class Pangrams {
     return p;
   }
 
-  public static boolean isPerfectPangram(String p) {
-    String candidate = p.toLowerCase();
+  // 0 = perfect, >0 is total absolute sum of errors.
+  public static int pangramScore(String pangramCandidate) {
+    String candidate = pangramCandidate.toLowerCase();
     int[] declaredCounts = new int[ALL_LETTERS.length];
     for (int i = 0; i < ALL_LETTERS.length; i++) {
       char l = ALL_LETTERS[i];
@@ -101,7 +102,16 @@ public class Pangrams {
       }
       declaredCounts[i] = number;
     }
-    return Arrays.equals(declaredCounts, count(p));
+    int[] counts = count(pangramCandidate);
+    int score = 0;
+    for (int i = 0; i < ALL_LETTERS.length; i++) {
+      score += Math.abs(declaredCounts[i] - counts[i]);
+    }
+    return score;
+  }
+
+  public static boolean isPerfectPangram(String pangramCandidate) {
+    return pangramScore(pangramCandidate) == 0;
   }
 
   public static int[] profile(String s) {
