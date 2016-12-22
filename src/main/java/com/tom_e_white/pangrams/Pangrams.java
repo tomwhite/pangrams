@@ -159,6 +159,24 @@ public class Pangrams {
     return pseudoPangram;
   }
 
+  public static String extractPrologue(String pangram) {
+    Pattern pattern = Pattern.compile("(?<prologue>.+) \\S+ a's");
+    Matcher matcher = pattern.matcher(pangram);
+    if (matcher.find()) {
+      return matcher.group("prologue");
+    }
+    return null;
+  }
+
+  public static String extractConnective(String pangram) {
+    Pattern pattern = Pattern.compile("y's,? (?<connective>.+) (one z|\\S+ z's)");
+    Matcher matcher = pattern.matcher(pangram);
+    if (matcher.find()) {
+      return matcher.group("connective");
+    }
+    return null;
+  }
+
   public static SearchParameters getSearch(String pseudoPangram) {
     // from p18 Sallows
     // changed to start from 2 to avoid 's' problems
