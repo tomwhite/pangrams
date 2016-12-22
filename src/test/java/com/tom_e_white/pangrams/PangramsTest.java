@@ -111,7 +111,7 @@ public class PangramsTest {
   }
 
   @Test
-  public void testFindRanges() {
+  public void testSearchParameters() {
     // from p18 Sallows
     String pseudoPangram =
         "This pangram lists four a's, one b, one c, two d's, ? e's, ? f's, ? g's, " +
@@ -122,8 +122,10 @@ public class PangramsTest {
     int[] rowStarts = { 25, 4, 2, 3,  8, 2, 17, 12, 3, 24, 18, 2, 3,  7, 2, 3 };
     int[] rowEnds =   { 32, 9, 7, 8, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5 };
 
-    assertArrayEquals(rowStarts, Pangrams.getRowStarts(pseudoPangram));
-    assertArrayEquals(rowEnds, Pangrams.getRowEnds(pseudoPangram));
+    SearchParameters searchParameters = Pangrams.getSearch(pseudoPangram);
+
+    assertArrayEquals(rowStarts, searchParameters.getRowStarts());
+    assertArrayEquals(rowEnds, searchParameters.getRowEnds());
 
   }
 }

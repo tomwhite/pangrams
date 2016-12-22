@@ -96,15 +96,15 @@ public class Pangrams {
   }
 
   /**
-   * @return a score measuring how close a candidate sentence is to being a pangram, 0 = perfect, >0 is total absolute sum of errors.
+   * @return an array of declared letter counts in the given string
    */
-  public static int pangramScore(String pangramCandidate) {
-    String candidate = pangramCandidate.toLowerCase();
+  public static int[] countDeclared(String s) {
+    String sl = s.toLowerCase();
     int[] declaredCounts = new int[ALL_LETTERS.length];
     for (int i = 0; i < ALL_LETTERS.length; i++) {
       char l = ALL_LETTERS[i];
       Pattern pattern = Pattern.compile("([a-z\\-]+) " + l + "'s");
-      Matcher matcher = pattern.matcher(candidate);
+      Matcher matcher = pattern.matcher(sl);
       int number;
       if (matcher.find()) {
         String englishNumber = matcher.group(1);
@@ -112,13 +112,21 @@ public class Pangrams {
           throw new IllegalArgumentException("Grammatical error: " + matcher.group());
         }
         number = parseNumber(englishNumber);
-      } else if (candidate.contains("one " + l)) {
+      } else if (sl.contains("one " + l)) {
         number = 1;
       } else {
         throw new IllegalArgumentException("Missing count for " + l);
       }
       declaredCounts[i] = number;
     }
+    return declaredCounts;
+  }
+
+  /**
+   * @return a score measuring how close a candidate sentence is to being a pangram, 0 = perfect, >0 is total absolute sum of errors.
+   */
+  public static int pangramScore(String pangramCandidate) {
+    int[] declaredCounts = countDeclared(pangramCandidate);
     int[] counts = count(pangramCandidate);
     int score = 0;
     for (int i = 0; i < ALL_LETTERS.length; i++) {
@@ -151,30 +159,22 @@ public class Pangrams {
     return pseudoPangram;
   }
 
-  public static int[] getRowStarts(String pseudoPangram) {
+  public static SearchParameters getSearch(String pseudoPangram) {
     // from p18 Sallows
     // changed to start from 2 to avoid 's' problems
     int[] rowStarts = { 25, 4, 2, 3,  8, 2, 17, 12, 3, 24, 18, 2, 3,  7, 2, 3 };
+    int[] rowEnds =   { 32, 9, 7, 8, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5 };
     String sallowsPseudoPangram =
         "This pangram lists four a's, one b, one c, two d's, ? e's, ? f's, ? g's, " +
             "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
             "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
     minus(rowStarts, profile(sallowsPseudoPangram));
     add(rowStarts, profile(pseudoPangram));
-    return rowStarts;
-  }
 
-  public static int[] getRowEnds(String pseudoPangram) {
-    // TODO: should calculate at same time as starts
-    // TODO: make sure x doesn't go past 5
-    int[] rowEnds =   { 32, 9, 7, 8, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5 };
-    String sallowsPseudoPangram =
-        "This pangram lists four a's, one b, one c, two d's, ? e's, ? f's, ? g's, " +
-            "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
-            "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
     minus(rowEnds, profile(sallowsPseudoPangram));
     add(rowEnds, profile(pseudoPangram));
-    return rowEnds;
+
+    return new SearchParameters(rowStarts, rowEnds, profile(pseudoPangram));
   }
 
   /**
