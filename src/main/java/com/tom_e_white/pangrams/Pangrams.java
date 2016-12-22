@@ -134,15 +134,19 @@ public class Pangrams {
     return pangramScore(pangramCandidate) == 0;
   }
 
-  public static String createPseudoPangram(String pangramTemplate) {
-    String pseudoPangram = pangramTemplate;
-    int[] counts = count(pangramTemplate);
+  public static String createPseudoPangram(String prologue, String connective) {
+    String pseudoPangram = String.format(
+        "%s ? a's, ? b's, ? c's, ? d's, ? e's, ? f's, ? g's, " +
+            "? h's, ? i's, ? j's, ? k's, ? l's, ? m's, ? n's, ? o's, ? p's, ? q's, " +
+            "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, %s ? z's.",
+        prologue, connective);
+    int[] counts = count(pseudoPangram);
     for (int i = 0; i < ALL_LETTERS.length; i++) {
       char l = ALL_LETTERS[i];
       if (Arrays.binarySearch(PROFILE_LETTERS, l) >= 0) {
         continue;
       }
-      pseudoPangram = pseudoPangram.replace("? " + l, NUMBERS[counts[i]] + " " + l);
+      pseudoPangram = pseudoPangram.replace("? " + l + (counts[i] == 1 ? "'s" : ""), NUMBERS[counts[i]] + " " + l);
     }
     return pseudoPangram;
   }
@@ -161,8 +165,8 @@ public class Pangrams {
   }
 
   public static int[] getRowEnds(String pseudoPangram) {
-    // from p18 Sallows
-    // changed to start from 2 to avoid 's' problems
+    // TODO: should calculate at same time as starts
+    // TODO: make sure x doesn't go past 5
     int[] rowEnds =   { 32, 9, 7, 8, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5 };
     String sallowsPseudoPangram =
         "This pangram lists four a's, one b, one c, two d's, ? e's, ? f's, ? g's, " +
