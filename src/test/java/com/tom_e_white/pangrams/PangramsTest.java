@@ -138,5 +138,9 @@ public class PangramsTest {
             "four u's, five v's, nine w's, two x's, four y's, and one z.";
     assertEquals("This pangram lists", Pangrams.extractPrologue(pangram));
     assertEquals("and", Pangrams.extractConnective(pangram));
+
+    // TODO: create a pseudo-pangram, and check the non-profile letter counts are the same as the pangram
+    // TODO: check the profile letter ranges for the search parameters contain the declared counts from the pangram
+    // TODO: run this test for all the Nth pangrams
   }
 }
