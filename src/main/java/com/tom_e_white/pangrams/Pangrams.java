@@ -85,7 +85,7 @@ public class Pangrams {
    * @return an array of letter counts in the given string
    */
   public static int[] count(String s) {
-    int[] p = new int[26];
+    int[] p = new int[ALL_LETTERS.length];
     for (char c : s.toCharArray()) {
       int i = Arrays.binarySearch(ALL_LETTERS, Character.toLowerCase(c));
       if (i >= 0) {
