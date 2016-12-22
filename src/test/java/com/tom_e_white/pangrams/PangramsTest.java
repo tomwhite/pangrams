@@ -126,15 +126,4 @@ public class PangramsTest {
     assertArrayEquals(rowEnds, Pangrams.getRowEnds(pseudoPangram));
 
   }
-
-  @Test
-  public void testDependents() {
-    // 'eleven' and 'twelve' both contain an 'l'
-    assertArrayEquals(new int[] { 11, 12 }, Pangrams.dependents(11, 12, 'l'));
-    // 'ten' and 'thirteen' don't contain an 'l'
-    assertArrayEquals(new int[] { -1, 11, 12 }, Pangrams.dependents(10, 13, 'l'));
-    // 'three', 'four', and 'five' don't contain a 'y'
-    assertArrayEquals(new int[] { -1 }, Pangrams.dependents(3, 5, 'y'));
-  }
-
 }

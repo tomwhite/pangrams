@@ -222,24 +222,6 @@ public class Pangrams {
     return p;
   }
 
-  public static int[] dependents(int rowStart, int rowEnd, char letter) {
-    int letterIndex = Arrays.binarySearch(PROFILE_LETTERS, letter);
-    Set<Integer> deps = new TreeSet<>();
-    for (int i = rowStart; i <= rowEnd; i++) {
-      if (PROFILES[i][letterIndex] == 0) {
-        deps.add(-1);
-      } else {
-        deps.add(i);
-      }
-    }
-    int[] depsArray = new int[deps.size()];
-    int i = 0;
-    for (int dep : deps) {
-      depsArray[i++] = dep;
-    }
-    return depsArray;
-  }
-
   public static void dump(int[] i) {
     System.out.println(Arrays.toString(i));
   }
