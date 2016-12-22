@@ -134,6 +134,19 @@ public class Pangrams {
     return pangramScore(pangramCandidate) == 0;
   }
 
+  public static String createPseudoPangram(String pangramTemplate) {
+    String pseudoPangram = pangramTemplate;
+    int[] counts = count(pangramTemplate);
+    for (int i = 0; i < ALL_LETTERS.length; i++) {
+      char l = ALL_LETTERS[i];
+      if (Arrays.binarySearch(PROFILE_LETTERS, l) >= 0) {
+        continue;
+      }
+      pseudoPangram = pseudoPangram.replace("? " + l, NUMBERS[counts[i]] + " " + l);
+    }
+    return pseudoPangram;
+  }
+
   /**
    * A profile is an array of letter counts for the profile letters - i.e. those that appear in the English language
    * number words ("one", "two", "three", etc). These are

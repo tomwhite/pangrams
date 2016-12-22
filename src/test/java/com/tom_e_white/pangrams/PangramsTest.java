@@ -3,6 +3,7 @@ package com.tom_e_white.pangrams;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class PangramsTest {
@@ -34,15 +35,29 @@ public class PangramsTest {
   }
 
   @Test
+  public void testCreatePseudoPangram() {
+    String pangramTemplate =
+        "This pangram contains ? a's, ? b, ? c's, ? d's, ? e's, ? f's, ? g's, " +
+            "? h's, ? i's, ? j, ? k, ? l's, ? m's, ? n's, ? o's, ? p's, ? q, " +
+            "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and ? z.";
+    // from p208
+    String pseudoPangram =
+        "This pangram contains five a's, one b, two c's, two d's, ? e's, ? f's, ? g's, " +
+            "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
+            "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
+    assertEquals(pseudoPangram, Pangrams.createPseudoPangram(pangramTemplate));
+  }
+
+  @Test
   public void testAdditionalLetters() {
     // from p208
-    String pangramTemplate =
+    String pseudoPangram =
         "This pangram contains five a's, one b, two c's, two d's, ? e's, ? f's, ? g's, " +
             "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
             "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
     // numbers are from Figure 72
     int[] extra =  { 7, 2, 2, 2, 4, 1, 10, 11, 2, 24, 7, 1, 2, 5, 1, 1};
-    assertArrayEquals(extra, Pangrams.profile(pangramTemplate));
+    assertArrayEquals(extra, Pangrams.profile(pseudoPangram));
   }
 
   @Test
@@ -57,13 +72,13 @@ public class PangramsTest {
   @Test
   public void testColumnTotalsMatch() {
     // from p209, subtly different to the one on p208, since 'and' has become '&'
-    String pangramTemplate =
+    String pseudoPangram =
         "This pangram contains four a's, one b, two c's, one d, ? e's, ? f's, ? g's, " +
             "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
             "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, & one z.";
 
     int[] rows =   { 30, 6, 5, 7, 11, 2, 18, 15, 5, 27, 18, 2, 7, 8, 2, 3 };
-    int[] extra =  Pangrams.profile(pangramTemplate);
+    int[] extra =  Pangrams.profile(pseudoPangram);
     int[] totals = rows; // since it is a pangram
     assertArrayEquals(totals, Pangrams.columnTotals(rows, extra));
   }
@@ -71,13 +86,13 @@ public class PangramsTest {
   @Test
   public void testSearch() {
     // from p209
-    String pangramTemplate =
+    String pseudoPangram =
         "This pangram contains four a's, one b, two c's, one d, ? e's, ? f's, ? g's, " +
             "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
             "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, & one z.";
     int[] rowStarts = { 23,  1,  1,  1,  6, 2, 18, 15, 5, 27, 18, 2, 7, 8, 2, 2 };
     int[] rowEnds =   { 32, 10, 10, 10, 15, 2, 18, 15, 5, 27, 18, 2, 7, 8, 2, 5 };
-    int[] extra =  Pangrams.profile(pangramTemplate);
+    int[] extra =  Pangrams.profile(pseudoPangram);
     int[] rows =   { 30, 6, 5, 7, 11, 2, 18, 15, 5, 27, 18, 2, 7, 8, 2, 3 };
     assertArrayEquals(rows, Pangrams.search(rowStarts, rowEnds, extra));
   }
@@ -88,13 +103,13 @@ public class PangramsTest {
     // running at 1.4632726613672342E7 pangrams/s
     // changed to start from 2 to avoid 's' problems (not sure this is an actual
     // problem though)
-    String pangramTemplate =
+    String pseudoPangram =
         "This pangram lists four a's, one b, one c, two d's, ? e's, ? f's, ? g's, " +
             "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
             "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
     int[] rowStarts = { 25, 4, 2, 3,  8, 2, 17, 12, 3, 24, 18, 2, 3,  7, 2, 3 };
     int[] rowEnds =   { 32, 9, 7, 8, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5 };
-    int[] extra =  Pangrams.profile(pangramTemplate);
+    int[] extra =  Pangrams.profile(pseudoPangram);
     int[] rows =   { 29, 8, 3, 5, 11, 3, 22, 15, 7, 26, 19, 4, 5, 9, 2, 4 };
     assertArrayEquals(rows, Pangrams.search(rowStarts, rowEnds, extra));
   }
