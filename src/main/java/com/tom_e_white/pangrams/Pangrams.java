@@ -34,6 +34,9 @@ public class Pangrams {
     "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine",
   };
 
+  /**
+   * Test if two profiles are equal.
+   */
   private static boolean equals(int[] p1, int[] p2) {
     for (int i = 0; i < SIZE; i++) {
       if (p1[i] != p2[i]) {
@@ -43,12 +46,18 @@ public class Pangrams {
     return true;
   }
 
+  /**
+   * Add profile p2 to p1, mutating p1.
+   */
   private static void add(int[] p1, int[] p2) {
     for (int i = 0; i < SIZE; i++) {
       p1[i] = p1[i] + p2[i];
     }
   }
 
+  /**
+   * Take profile p2 from p1, mutating p1.
+   */
   private static int[] minus(int[] p1, int[] p2) {
     for (int i = 0; i < SIZE; i++) {
       p1[i] = p1[i] - p2[i];
@@ -56,6 +65,9 @@ public class Pangrams {
     return p1;
   }
 
+  /**
+   * Create a new copy of a profile.
+   */
   private static int[] copy(int[] p) {
     return Arrays.copyOf(p, p.length);
   }
@@ -69,6 +81,9 @@ public class Pangrams {
     throw new IllegalArgumentException("Number not recognized: " + n);
   }
 
+  /**
+   * @return an array of letter counts in the given string
+   */
   public static int[] count(String s) {
     int[] p = new int[26];
     for (char c : s.toCharArray()) {
@@ -80,7 +95,9 @@ public class Pangrams {
     return p;
   }
 
-  // 0 = perfect, >0 is total absolute sum of errors.
+  /**
+   * @return a score measuring how close a candidate sentence is to being a pangram, 0 = perfect, >0 is total absolute sum of errors.
+   */
   public static int pangramScore(String pangramCandidate) {
     String candidate = pangramCandidate.toLowerCase();
     int[] declaredCounts = new int[ALL_LETTERS.length];
@@ -110,10 +127,18 @@ public class Pangrams {
     return score;
   }
 
+  /**
+   * @return true if the candidate sentence is a perfect pangram, false otherwise.
+   */
   public static boolean isPerfectPangram(String pangramCandidate) {
     return pangramScore(pangramCandidate) == 0;
   }
 
+  /**
+   * A profile is an array of letter counts for the profile letters - i.e. those that appear in the English language
+   * number words ("one", "two", "three", etc). These are
+   'e', 'f', 'g', 'h', 'i', 'l', 'n', 'o', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y'.
+   */
   public static int[] profile(String s) {
     int[] p = new int[SIZE];
     for (char c : s.toCharArray()) {
