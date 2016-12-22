@@ -208,6 +208,9 @@ public class Pangrams {
         p[i]++;
       }
     }
+    if (s.equalsIgnoreCase("one")) {
+      p[9]--; // reduce count in the s-position to account for singular
+    }
     return p;
   }
 
