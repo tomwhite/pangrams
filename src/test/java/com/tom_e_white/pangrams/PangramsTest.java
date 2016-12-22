@@ -143,4 +143,6 @@ public class PangramsTest {
     // TODO: check the profile letter ranges for the search parameters contain the declared counts from the pangram
     // TODO: run this test for all the Nth pangrams
   }
+
+  // TODO: handle 'one' profile case, by making 's' -1. Test by trying to find a case from the paper with 'one l'.
 }
