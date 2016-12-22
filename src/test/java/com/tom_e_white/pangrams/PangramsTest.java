@@ -35,20 +35,6 @@ public class PangramsTest {
   }
 
   @Test
-  public void testCreatePseudoPangram() {
-    String pangramTemplate =
-        "This pangram contains ? a's, ? b, ? c's, ? d's, ? e's, ? f's, ? g's, " +
-            "? h's, ? i's, ? j, ? k, ? l's, ? m's, ? n's, ? o's, ? p's, ? q, " +
-            "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and ? z.";
-    // from p208
-    String pseudoPangram =
-        "This pangram contains five a's, one b, two c's, two d's, ? e's, ? f's, ? g's, " +
-            "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
-            "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
-    assertEquals(pseudoPangram, Pangrams.createPseudoPangram(pangramTemplate));
-  }
-
-  @Test
   public void testAdditionalLetters() {
     // from p208
     String pseudoPangram =
@@ -97,7 +83,7 @@ public class PangramsTest {
     assertArrayEquals(rows, Pangrams.search(rowStarts, rowEnds, extra));
   }
 
-  @Test
+  //@Test
   public void testSearchWithSallowsRanges() {
     // from p18 Sallows
     // running at 1.4632726613672342E7 pangrams/s
@@ -112,6 +98,41 @@ public class PangramsTest {
     int[] extra =  Pangrams.profile(pseudoPangram);
     int[] rows =   { 29, 8, 3, 5, 11, 3, 22, 15, 7, 26, 19, 4, 5, 9, 2, 4 };
     assertArrayEquals(rows, Pangrams.search(rowStarts, rowEnds, extra));
+  }
+
+  @Test
+  public void testCreatePseudoPangram() {
+    String pangramTemplate =
+        "This pangram contains ? a's, ? b, ? c's, ? d's, ? e's, ? f's, ? g's, " +
+            "? h's, ? i's, ? j, ? k, ? l's, ? m's, ? n's, ? o's, ? p's, ? q, " +
+            "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and ? z.";
+    // from p208
+    String pseudoPangram =
+        "This pangram contains five a's, one b, two c's, two d's, ? e's, ? f's, ? g's, " +
+            "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
+            "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
+    assertEquals(pseudoPangram, Pangrams.createPseudoPangram(pangramTemplate));
+  }
+
+  @Test
+  public void testFindRanges() {
+    String pangramTemplate =
+        "This pangram lists ? a's, ? b, ? c, ? d's, ? e's, ? f's, ? g's, " +
+            "? h's, ? i's, ? j, ? k, ? l's, ? m's, ? n's, ? o's, ? p's, ? q, " +
+            "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and ? z.";
+    // from p18 Sallows
+    String pseudoPangram =
+        "This pangram lists four a's, one b, one c, two d's, ? e's, ? f's, ? g's, " +
+            "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
+            "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
+    assertEquals(pseudoPangram, Pangrams.createPseudoPangram(pangramTemplate));
+
+    int[] rowStarts = { 25, 4, 2, 3,  8, 2, 17, 12, 3, 24, 18, 2, 3,  7, 2, 3 };
+    int[] rowEnds =   { 32, 9, 7, 8, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5 };
+
+    assertArrayEquals(rowStarts, Pangrams.getRowStarts(pseudoPangram));
+    assertArrayEquals(rowEnds, Pangrams.getRowEnds(pseudoPangram));
+
   }
 
   @Test
