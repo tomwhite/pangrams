@@ -202,7 +202,7 @@ public class Pangrams {
     if (matcher.find()) {
       return matcher.group("prologue");
     }
-    return null;
+    throw new IllegalArgumentException("No prologue found in " + pangram);
   }
 
   public static String extractConnective(String pangram) {
@@ -211,7 +211,7 @@ public class Pangrams {
     if (matcher.find()) {
       return matcher.group("connective");
     }
-    return null;
+    throw new IllegalArgumentException("No connective found in " + pangram);
   }
 
   public static SearchParameters getSearch(String pseudoPangram) {
