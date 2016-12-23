@@ -23,12 +23,4 @@ public class SearchParameters {
     return additionalLetters;
   }
 
-  public boolean isInRange(int[] p) {
-    for (int i = 0; i < p.length; i++) {
-      if (p[i] < rowStarts[i] || p[i] > rowEnds[i]) {
-        return false;
-      }
-    }
-    return true;
-  }
 }

@@ -82,6 +82,19 @@ public class Pangrams {
   }
 
   /**
+   * Turn an array of letter counts for all letters into a profile array.
+   */
+  public static int[] extractProfile(int[] all) {
+    int[] p = new int[SIZE];
+    int i = 0;
+    for (char c : PROFILE_LETTERS) {
+      int index = Arrays.binarySearch(ALL_LETTERS, c);
+      p[i++] = all[index];
+    }
+    return p;
+  }
+
+  /**
    * @return an array of letter counts in the given string
    */
   public static int[] count(String s) {
@@ -99,6 +112,12 @@ public class Pangrams {
    * @return an array of declared letter counts in the given string
    */
   public static int[] countDeclared(String s) {
+    return countDeclared(s, false);
+  }
+  /**
+   * @return an array of declared letter counts in the given string
+   */
+  public static int[] countDeclared(String s, boolean allowMissingCounts) {
     String sl = s.toLowerCase();
     int[] declaredCounts = new int[ALL_LETTERS.length];
     for (int i = 0; i < ALL_LETTERS.length; i++) {
@@ -114,6 +133,8 @@ public class Pangrams {
         number = parseNumber(englishNumber);
       } else if (sl.contains("one " + l)) {
         number = 1;
+      } else if (allowMissingCounts) {
+        number = -1;
       } else {
         throw new IllegalArgumentException("Missing count for " + l);
       }
