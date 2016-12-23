@@ -81,6 +81,13 @@ public class Pangrams {
     return Arrays.copyOf(p, p.length);
   }
 
+  private static int[] scale(int[] p, double f) {
+    for (int i = 0; i < SIZE; i++) {
+      p[i] = (int) (p[i] * f);
+    }
+    return p;
+  }
+
   private static int parseNumber(String n) {
     for (int i = 0; i < NUMBERS.length; i++) {
       if (NUMBERS[i].equals(n)) {
@@ -216,12 +223,10 @@ public class Pangrams {
             "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
             "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
 
-    // TODO: figure out how to adjust row starts and ends
-    //minus(rowStarts, profile(sallowsPseudoPangram));
-    //add(rowStarts, profile(pseudoPangram));
-
-    //minus(rowEnds, profile(sallowsPseudoPangram));
-    //add(rowEnds, profile(pseudoPangram));
+    // only adjust by half the difference to dampen things a bit
+    int[] adjustment = scale(minus(profile(pseudoPangram), profile(sallowsPseudoPangram)), 0.5);
+    add(rowStarts, adjustment);
+    add(rowEnds, adjustment);
 
     return new SearchParameters(rowStarts, rowEnds, profile(pseudoPangram));
   }
