@@ -1,5 +1,6 @@
 package com.tom_e_white.pangrams;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -73,9 +74,8 @@ public class PangramsTest {
     assertArrayEquals(rows, Pangrams.search(rowStarts, rowEnds, extra));
   }
 
-  // TODO: test can find a pangram with l=1
-
-  //@Test
+  @Test
+  @Ignore(value = "Slow")
   public void testSearchWithSallowsRanges() {
     // from p18 Sallows
     // running at 1.4632726613672342E7 pangrams/s
@@ -87,6 +87,20 @@ public class PangramsTest {
     int[] rowEnds =   { 32, 9, 7, 8, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5 };
     int[] extra =  Pangrams.profile(pseudoPangram);
     int[] rows =   { 29, 8, 3, 5, 11, 3, 22, 15, 7, 26, 19, 4, 5, 9, 2, 4 };
+    assertArrayEquals(rows, Pangrams.search(rowStarts, rowEnds, extra));
+  }
+
+  @Test
+  @Ignore // not sure why it can't find a solution!
+  public void testSearchLEqualsOne() {
+    String pseudoPangram =
+        "This fourth pangram numbers four a's, two b's, one c, two d's, ? e's, ? f's, ? g's, " +
+            "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
+            "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
+    int[] rowStarts = { 23,  1,  1,  1,  6, 1, 17, 14, 9, 26, 20, 5, 5, 9, 3, 5 };
+    int[] rowEnds =   { 32, 10, 10, 10, 15, 2, 23, 14, 9, 26, 20, 5, 5, 9, 3, 5 };
+    int[] extra =  Pangrams.profile(pseudoPangram);
+    int[] rows =   { 29, 7, 2, 6, 10, 1, 23, 14, 9, 26, 20, 5, 5, 9, 3, 5 };
     assertArrayEquals(rows, Pangrams.search(rowStarts, rowEnds, extra));
   }
 
