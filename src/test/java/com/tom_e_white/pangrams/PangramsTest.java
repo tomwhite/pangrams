@@ -73,6 +73,8 @@ public class PangramsTest {
     assertArrayEquals(rows, Pangrams.search(rowStarts, rowEnds, extra));
   }
 
+  // TODO: test can find a pangram with l=1
+
   //@Test
   public void testSearchWithSallowsRanges() {
     // from p18 Sallows
