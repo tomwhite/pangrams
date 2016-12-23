@@ -34,6 +34,15 @@ public class Pangrams {
     "forty-five", "forty-six", "forty-seven", "forty-eight", "forty-nine",
   };
 
+
+  public static char profileLetter(int i) {
+    return PROFILE_LETTERS[i];
+  }
+
+  public static char letter(int i) {
+    return ALL_LETTERS[i];
+  }
+
   /**
    * Test if two profiles are equal.
    */
