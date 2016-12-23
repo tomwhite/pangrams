@@ -209,18 +209,19 @@ public class Pangrams {
 
   public static SearchParameters getSearch(String pseudoPangram) {
     // from p18 Sallows
-    // changed to start from 2 to avoid 's' problems
-    int[] rowStarts = { 25, 4, 2, 3,  8, 2, 17, 12, 3, 24, 18, 2, 3,  7, 2, 3 };
+    int[] rowStarts = { 25, 4, 2, 3,  8, 1, 17, 12, 3, 24, 18, 2, 3,  7, 1, 3 };
     int[] rowEnds =   { 32, 9, 7, 8, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5 };
     String sallowsPseudoPangram =
         "This pangram lists four a's, one b, one c, two d's, ? e's, ? f's, ? g's, " +
             "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
             "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
-    minus(rowStarts, profile(sallowsPseudoPangram));
-    add(rowStarts, profile(pseudoPangram));
 
-    minus(rowEnds, profile(sallowsPseudoPangram));
-    add(rowEnds, profile(pseudoPangram));
+    // TODO: figure out how to adjust row starts and ends
+    //minus(rowStarts, profile(sallowsPseudoPangram));
+    //add(rowStarts, profile(pseudoPangram));
+
+    //minus(rowEnds, profile(sallowsPseudoPangram));
+    //add(rowEnds, profile(pseudoPangram));
 
     return new SearchParameters(rowStarts, rowEnds, profile(pseudoPangram));
   }

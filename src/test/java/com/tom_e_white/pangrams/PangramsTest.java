@@ -77,13 +77,11 @@ public class PangramsTest {
   public void testSearchWithSallowsRanges() {
     // from p18 Sallows
     // running at 1.4632726613672342E7 pangrams/s
-    // changed to start from 2 to avoid 's' problems (not sure this is an actual
-    // problem though)
     String pseudoPangram =
         "This pangram lists four a's, one b, one c, two d's, ? e's, ? f's, ? g's, " +
             "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
             "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
-    int[] rowStarts = { 25, 4, 2, 3,  8, 2, 17, 12, 3, 24, 18, 2, 3,  7, 2, 3 };
+    int[] rowStarts = { 25, 4, 2, 3,  8, 1, 17, 12, 3, 24, 18, 2, 3,  7, 1, 3 };
     int[] rowEnds =   { 32, 9, 7, 8, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5 };
     int[] extra =  Pangrams.profile(pseudoPangram);
     int[] rows =   { 29, 8, 3, 5, 11, 3, 22, 15, 7, 26, 19, 4, 5, 9, 2, 4 };
@@ -109,7 +107,7 @@ public class PangramsTest {
             "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
     assertEquals(pseudoPangram, Pangrams.createPseudoPangram("This pangram lists", "and"));
 
-    int[] rowStarts = { 25, 4, 2, 3,  8, 2, 17, 12, 3, 24, 18, 2, 3,  7, 2, 3 };
+    int[] rowStarts = { 25, 4, 2, 3,  8, 1, 17, 12, 3, 24, 18, 2, 3,  7, 1, 3 };
     int[] rowEnds =   { 32, 9, 7, 8, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5 };
 
     SearchParameters searchParameters = Pangrams.getSearch(pseudoPangram);
