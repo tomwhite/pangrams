@@ -4,18 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class PangramsTest {
-  @Test
-  public void testIsPerfectPangram() {
-    String pangram =
-        "This pangram lists four a's, one b, one c, two d's, twenty-nine e's, eight f's," +
-        " three g's, five h's, eleven i's, one j, one k, three l's, two m's, twenty-two" +
-        " n's, fifteen o's, two p's, one q, seven r's, twenty-six s's, nineteen t's, " +
-        "four u's, five v's, nine w's, two x's, four y's, and one z.";
-    assertTrue(Pangrams.isPerfectPangram(pangram));
-  }
 
   @Test
   public void testProfile() {
@@ -140,34 +130,4 @@ public class PangramsTest {
     assertEquals("and", Pangrams.extractConnective(pangram));
   }
 
-  @Test
-  public void testSearchRangeWouldHaveFoundActualPangram() {
-    String pangram =
-        "This pangram lists four a's, one b, one c, two d's, twenty-nine e's, eight f's," +
-            " three g's, five h's, eleven i's, one j, one k, three l's, two m's, twenty-two" +
-            " n's, fifteen o's, two p's, one q, seven r's, twenty-six s's, nineteen t's, " +
-            "four u's, five v's, nine w's, two x's, four y's, and one z.";
-    String prologue = Pangrams.extractPrologue(pangram);
-    String connective = Pangrams.extractConnective(pangram);
-    String pseudoPangram = Pangrams.createPseudoPangram(prologue, connective);
-    SearchParameters searchParameters = Pangrams.getSearch(pseudoPangram);
-    int[] declaredCounts = Pangrams.countDeclared(pangram);
-    int[] pseudoDeclaredCounts = Pangrams.countDeclared(pseudoPangram, true);
-    for (int i = 0; i < declaredCounts.length; i++) {
-      if (pseudoDeclaredCounts[i] != -1) {
-        // check the non-profile letter counts are the same as the pangram
-        assertEquals(declaredCounts[i], pseudoDeclaredCounts[i]);
-      }
-    }
-    // check the profile letter ranges for the search parameters contain the declared counts from the pangram
-    int[] profile = Pangrams.extractProfile(declaredCounts);
-    int[] rowStarts = searchParameters.getRowStarts();
-    int[] rowEnds = searchParameters.getRowEnds();
-    for (int i = 0; i < profile.length; i++) {
-      assertTrue(profile[i] >= rowStarts[i]);
-      assertTrue(profile[i] <= rowEnds[i]);
-    }
-
-    // TODO: run this test for all the Nth pangrams
-  }
 }
