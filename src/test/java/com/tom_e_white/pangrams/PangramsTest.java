@@ -91,11 +91,10 @@ public class PangramsTest {
   }
 
   @Test
-  @Ignore // not sure why it can't find a solution!
   public void testSearchLEqualsOne() {
     String pseudoPangram =
         "This fourth pangram numbers four a's, two b's, one c, two d's, ? e's, ? f's, ? g's, " +
-            "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
+            "? h's, ? i's, one j, one k, ? l's, three m's, ? n's, ? o's, two p's, one q, " +
             "? r's, ? s's, ? t's, ? u's, ? v's, ? w's, ? x's, ? y's, and one z.";
     int[] rowStarts = { 23,  1,  1,  1,  6, 1, 17, 14, 9, 26, 20, 5, 5, 9, 3, 5 };
     int[] rowEnds =   { 32, 10, 10, 10, 15, 2, 23, 14, 9, 26, 20, 5, 5, 9, 3, 5 };
