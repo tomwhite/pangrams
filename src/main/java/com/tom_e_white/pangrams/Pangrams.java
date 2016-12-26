@@ -241,6 +241,17 @@ public class Pangrams {
     return pangram;
   }
 
+  public static String substituteLetters(String pseudoPangram, int[] letters) {
+    String pangram = pseudoPangram;
+    for (int i = 0; i < ALL_LETTERS.length; i++) {
+      char l = ALL_LETTERS[i];
+      int count = letters[i];
+      pangram = pangram.replace("? " + l + (count == 1 ? "'s" : ""), NUMBERS[count] + " " + l);
+    }
+    return pangram;
+  }
+
+
   /**
    * A profile is an array of letter counts for the profile letters - i.e. those that appear in the English language
    * number words ("one", "two", "three", etc). These are
