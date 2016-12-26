@@ -303,6 +303,10 @@ public class Pangrams {
   public static void dump(int[] i) {
     System.out.println(Arrays.toString(i));
   }
+
+  public static int[] search(SearchParameters searchParameters) {
+    return search(searchParameters.getRowStarts(), searchParameters.getRowEnds(), searchParameters.getAdditionalLetters());
+  }
   
   public static int[] search(int[] rowStarts, int[] rowEnds, int[] additionalLetters) {
     double searchSpaceSize = 1;
@@ -312,6 +316,8 @@ public class Pangrams {
       }
       searchSpaceSize *= rowEnds[i] - rowStarts[i] + 1;
     }
+    System.out.println("Row starts: " + Arrays.toString(rowStarts));
+    System.out.println("Row ends: " + Arrays.toString(rowEnds));
     System.out.println("Search space size: " + searchSpaceSize);
 
     long startTime = System.nanoTime();
