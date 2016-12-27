@@ -1,0 +1,67 @@
+/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/bin/java -Dvisualvm.id=1482755863139964000 -Didea.launcher.port=7533 "-Didea.launcher.bin.path=/Applications/IntelliJ IDEA 14 CE.app/Contents/bin" -Dfile.encoding=UTF-8 -classpath "/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/ant-javafx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/dt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/javafx-mx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/jconsole.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/packager.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/sa-jdi.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/tools.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfxswt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/cldrdata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/jaccess.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/nashorn.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/zipfs.jar:/Users/tom/projects-workspace/pangrams/target/classes:/Applications/IntelliJ IDEA 14 CE.app/Contents/lib/idea_rt.jar" com.intellij.rt.execution.application.AppMain com.tom_e_white.pangrams.PangramSearch
+Searching for 'This pangram for Tom contains' ... 'and' ...
+Row starts: [26, 4, 2, 3, 8, 1, 17, 12, 3, 24, 19, 2, 3, 7, 1, 3]
+Row ends: [33, 9, 7, 8, 14, 4, 23, 17, 8, 30, 25, 6, 8, 13, 5, 5]
+Search space size: 5.22764928E9
+Time (pangrams/s): 1.5799240430838494E7
+No pangram found
+Searching for 'This pangram for Tom contains' ... '&' ...
+Row starts: [26, 4, 2, 3, 8, 1, 17, 13, 4, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [33, 9, 7, 8, 14, 4, 23, 18, 9, 30, 24, 6, 8, 13, 5, 5]
+Search space size: 5.22764928E9
+Time (pangrams/s): 1.560886977135227E7
+No pangram found
+Searching for 'This pangram for Tom lists' ... 'and' ...
+Row starts: [26, 4, 2, 3, 8, 1, 17, 12, 4, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [33, 9, 7, 8, 14, 4, 23, 17, 9, 30, 24, 6, 8, 13, 5, 5]
+Search space size: 5.22764928E9
+Time (pangrams/s): 1.5947375847045675E7
+No pangram found
+Searching for 'This pangram for Tom lists' ... '&' ...
+Row starts: [27, 4, 2, 4, 8, 1, 17, 12, 4, 24, 18, 2, 3, 6, 1, 3]
+Row ends: [34, 9, 7, 9, 14, 4, 23, 17, 9, 30, 24, 6, 8, 12, 5, 5]
+Search space size: 5.22764928E9
+2801241684
+Time (pangrams/s): 1.6185311283045333E7
+Eureka!
+This pangram for Tom lists three a's, one b, one c, one d, thirty-one e's, five f's, five g's, eight h's, ten i's, one j, one k, two l's, three m's, eighteen n's, seventeen o's, two p's, one q, seven r's, twenty-seven s's, twenty-two t's, two u's, six v's, eight w's, two x's, four y's, & one z.
+Searching for 'This pangram for Tom includes' ... 'and' ...
+Row starts: [27, 4, 2, 4, 8, 1, 17, 12, 4, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [34, 9, 7, 9, 14, 4, 23, 17, 9, 30, 24, 6, 8, 13, 5, 5]
+Search space size: 5.22764928E9
+Time (pangrams/s): 1.6704109908468781E7
+No pangram found
+Searching for 'This pangram for Tom includes' ... '&' ...
+Row starts: [27, 4, 2, 4, 8, 1, 17, 12, 4, 24, 19, 2, 3, 7, 1, 3]
+Row ends: [34, 9, 7, 9, 14, 4, 23, 17, 9, 30, 25, 6, 8, 13, 5, 5]
+Search space size: 5.22764928E9
+Time (pangrams/s): 1.5798090847644322E7
+No pangram found
+Searching for 'This pangram for Tom has' ... 'and' ...
+Row starts: [26, 4, 2, 4, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [33, 9, 7, 9, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5]
+Search space size: 5.22764928E9
+Time (pangrams/s): 1.5926001713806631E7
+No pangram found
+Searching for 'This pangram for Tom has' ... '&' ...
+Row starts: [26, 4, 2, 4, 8, 1, 17, 12, 4, 23, 18, 2, 3, 6, 1, 3]
+Row ends: [33, 9, 7, 9, 14, 4, 23, 17, 9, 29, 24, 6, 8, 12, 5, 5]
+Search space size: 5.22764928E9
+2255599377
+Time (pangrams/s): 1.618705197288896E7
+Eureka!
+This pangram for Tom has four a's, one b, one c, one d, twenty-nine e's, six f's, four g's, eight h's, nine i's, one j, one k, one l, three m's, twenty-two n's, seventeen o's, two p's, one q, nine r's, twenty-three s's, twenty t's, four u's, three v's, eight w's, two x's, five y's, & one z.
+Searching for 'This pangram for Tom uses' ... 'and' ...
+Row starts: [26, 4, 2, 3, 8, 1, 17, 12, 4, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [33, 9, 7, 8, 14, 4, 23, 17, 9, 30, 24, 6, 8, 13, 5, 5]
+Search space size: 5.22764928E9
+4107052806
+Time (pangrams/s): 1.6326364754775977E7
+Eureka!
+This pangram for Tom uses four a's, one b, one c, two d's, thirty-two e's, five f's, three g's, seven h's, nine i's, one j, one k, one l, three m's, twenty-two n's, seventeen o's, two p's, one q, eight r's, twenty-seven s's, twenty-one t's, three u's, six v's, nine w's, two x's, five y's, and one z.
+Searching for 'This pangram for Tom uses' ... '&' ...
+Row starts: [28, 4, 2, 4, 8, 1, 17, 12, 4, 24, 18, 2, 3, 6, 1, 3]
+Row ends: [35, 9, 7, 9, 14, 4, 23, 17, 9, 30, 24, 6, 8, 12, 5, 5]
+Search space size: 5.22764928E9
+Time (pangrams/s): 1.5728204252109045E7
+No pangram found
