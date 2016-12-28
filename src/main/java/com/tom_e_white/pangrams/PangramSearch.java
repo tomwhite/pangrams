@@ -3,15 +3,15 @@ package com.tom_e_white.pangrams;
 public class PangramSearch {
   public static void main(String[] args) {
     String[] names = {
-        "Lottie White",
-        "Emilia White",
-        "Eliane Wigzell",
+//        "Lottie White",
+//        "Emilia White",
+//        "Eliane Wigzell",
         "Tom White",
-        "Lottie",
-        "Emilia",
-        "Millie",
-        "Eliane",
-        "Tom",
+//        "Lottie",
+//        "Emilia",
+//        "Millie",
+//        "Eliane",
+//        "Tom",
     };
     for (String name : names) {
       String[] prologues = {

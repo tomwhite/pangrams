@@ -1,0 +1,111 @@
+/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/bin/java -Dvisualvm.id=1482879322818461000 -Didea.launcher.port=7539 "-Didea.launcher.bin.path=/Applications/IntelliJ IDEA 14 CE.app/Contents/bin" -Dfile.encoding=UTF-8 -classpath "/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/ant-javafx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/dt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/javafx-mx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/jconsole.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/packager.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/sa-jdi.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/lib/tools.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jfxswt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/cldrdata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/jaccess.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/nashorn.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/jre/lib/ext/zipfs.jar:/Users/tom/projects-workspace/pangrams/target/classes:/Applications/IntelliJ IDEA 14 CE.app/Contents/lib/idea_rt.jar" com.intellij.rt.execution.application.AppMain com.tom_e_white.pangrams.PangramSearch
+Searching for 'This pangram for Tom White contains' ... 'and' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [33, 9, 7, 10, 15, 4, 23, 17, 10, 30, 26, 6, 8, 13, 5, 6]
+Search space size: 1.536288768E10
+Time (pangrams/s): 1.5424176506371874E7
+No pangram found
+Searching for 'This pangram for Tom White contains' ... '&' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [33, 9, 7, 10, 14, 4, 23, 18, 11, 30, 26, 6, 8, 13, 5, 6]
+Search space size: 1.764331632E10
+10716168837
+Time (pangrams/s): 1.431787653235874E7
+Eureka!
+This pangram for Tom White contains four a's, one b, two c's, one d, thirty e's, six f's, three g's, nine h's, ten i's, one j, one k, two l's, three m's, twenty-one n's, eighteen o's, two p's, one q, eleven r's, twenty-four s's, twenty-three t's, four u's, three v's, nine w's, two x's, five y's, & one z.
+Searching for 'This pangram for Tom White lists' ... 'and' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [33, 9, 7, 10, 14, 4, 23, 17, 11, 30, 26, 6, 8, 13, 5, 6]
+Search space size: 1.512284256E10
+Time (pangrams/s): 1.6965786329934683E7
+No pangram found
+Searching for 'This pangram for Tom White lists' ... '&' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [35, 9, 7, 10, 14, 4, 23, 17, 11, 30, 26, 6, 8, 13, 5, 6]
+Search space size: 1.848347424E10
+Time (pangrams/s): 1.6480919772199463E7
+No pangram found
+Searching for 'This pangram for Tom White includes' ... 'and' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [34, 9, 7, 10, 14, 4, 23, 17, 11, 30, 26, 6, 8, 13, 5, 6]
+Search space size: 1.68031584E10
+Time (pangrams/s): 1.6310560381066335E7
+No pangram found
+Searching for 'This pangram for Tom White includes' ... '&' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [34, 9, 7, 10, 14, 4, 23, 17, 11, 30, 26, 6, 8, 13, 5, 6]
+Search space size: 1.68031584E10
+Time (pangrams/s): 1.6650447551913137E7
+No pangram found
+Searching for 'This pangram for Tom White has' ... 'and' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [34, 9, 7, 10, 14, 4, 23, 17, 10, 30, 25, 6, 8, 13, 5, 6]
+Search space size: 1.32765696E10
+Time (pangrams/s): 1.700996655213231E7
+No pangram found
+Searching for 'This pangram for Tom White has' ... '&' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [34, 9, 7, 10, 14, 4, 23, 17, 11, 29, 25, 6, 8, 13, 5, 6]
+Search space size: 1.28024064E10
+Time (pangrams/s): 1.6638670546534318E7
+No pangram found
+Searching for 'This pangram for Tom White uses' ... 'and' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [34, 9, 7, 10, 14, 4, 23, 17, 11, 30, 25, 6, 8, 13, 5, 6]
+Search space size: 1.49361408E10
+Time (pangrams/s): 1.6679387771947248E7
+No pangram found
+Searching for 'This pangram for Tom White uses' ... '&' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [35, 9, 7, 10, 14, 4, 23, 17, 11, 30, 25, 6, 8, 13, 5, 6]
+Search space size: 1.642975488E10
+Time (pangrams/s): 1.6613142317835175E7
+No pangram found
+Searching for 'This pangram for Tom White features' ... 'and' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [35, 10, 7, 10, 14, 4, 23, 17, 11, 30, 26, 6, 8, 13, 5, 6]
+Search space size: 2.156405328E10
+Time (pangrams/s): 1.6714673521360537E7
+No pangram found
+Searching for 'This pangram for Tom White features' ... '&' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [35, 10, 7, 10, 14, 4, 23, 17, 11, 29, 25, 6, 8, 13, 5, 6]
+Search space size: 1.642975488E10
+Time (pangrams/s): 1.7004095520037957E7
+No pangram found
+Searching for 'This pangram for Tom White shows' ... 'and' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [33, 9, 7, 10, 14, 4, 23, 18, 11, 30, 25, 6, 8, 13, 5, 6]
+Search space size: 1.568294784E10
+Time (pangrams/s): 1.6300543637956081E7
+No pangram found
+Searching for 'This pangram for Tom White shows' ... '&' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [35, 9, 7, 11, 14, 4, 23, 17, 11, 30, 25, 6, 8, 13, 5, 6]
+Search space size: 1.848347424E10
+Time (pangrams/s): 1.6633071687927635E7
+No pangram found
+Searching for 'This pangram for Tom White totals' ... 'and' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [34, 9, 7, 10, 14, 4, 23, 17, 10, 30, 26, 6, 8, 13, 5, 6]
+Search space size: 1.49361408E10
+Time (pangrams/s): 1.6669409924273135E7
+No pangram found
+Searching for 'This pangram for Tom White totals' ... '&' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [34, 9, 7, 10, 14, 4, 23, 18, 11, 29, 26, 6, 8, 13, 5, 6]
+Search space size: 1.68031584E10
+Time (pangrams/s): 1.6663632254730497E7
+No pangram found
+Searching for 'This pangram for Tom White enumerates' ... 'and' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [34, 10, 7, 9, 14, 4, 23, 17, 11, 30, 25, 6, 8, 13, 5, 6]
+Search space size: 1.52473104E10
+Time (pangrams/s): 1.668484027953376E7
+No pangram found
+Searching for 'This pangram for Tom White enumerates' ... '&' ...
+Row starts: [25, 4, 2, 3, 8, 1, 17, 12, 3, 24, 18, 2, 3, 7, 1, 3]
+Row ends: [34, 10, 7, 9, 14, 4, 23, 18, 11, 29, 25, 7, 8, 13, 5, 6]
+Search space size: 1.829677248E10
+Time (pangrams/s): 1.7021298594316594E7
+No pangram found

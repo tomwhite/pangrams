@@ -217,7 +217,7 @@ public class Pangrams {
   public static SearchParameters getSearch(String pseudoPangram) {
     // from p18 Sallows
     int[] rowStarts = { 25, 4, 2, 3,  8, 1, 17, 12, 3, 24, 18, 2, 3,  7, 1, 3 };
-    int[] rowEnds =   { 32, 9, 7, 8, 14, 4, 23, 17, 8, 30, 24, 6, 8, 13, 5, 5 };
+    int[] rowEnds =   { 32, 9, 7, 9, 14, 4, 23, 17, 10, 30, 25, 6, 8, 13, 5, 6 };
     String sallowsPseudoPangram =
         "This pangram lists four a's, one b, one c, two d's, ? e's, ? f's, ? g's, " +
             "? h's, ? i's, one j, one k, ? l's, two m's, ? n's, ? o's, two p's, one q, " +
@@ -225,7 +225,7 @@ public class Pangrams {
 
     // only adjust by half the difference to dampen things a bit
     int[] adjustment = scale(minus(profile(pseudoPangram), profile(sallowsPseudoPangram)), 0.5);
-    add(rowStarts, adjustment);
+    //add(rowStarts, adjustment);
     add(rowEnds, adjustment);
 
     return new SearchParameters(rowStarts, rowEnds, profile(pseudoPangram));
@@ -412,15 +412,15 @@ public class Pangrams {
                                   add(cols, PROFILE_DELTAS[rows[5]][numLs]);
                                   rows[5] = numLs;
 
-                                  // count number of x's
-                                  int numXs = cols[14];
-                                  add(cols, PROFILE_DELTAS[rows[14]][numXs]);
-                                  rows[14] = numXs;
-
                                   // count number of y's
                                   int numYs = cols[15];
                                   add(cols, PROFILE_DELTAS[rows[15]][numYs]);
                                   rows[15] = numYs;
+
+                                  // count number of x's
+                                  int numXs = cols[14];
+                                  add(cols, PROFILE_DELTAS[rows[14]][numXs]);
+                                  rows[14] = numXs;
 
                                   count++;
                                   if (equals(rows, cols)) {
