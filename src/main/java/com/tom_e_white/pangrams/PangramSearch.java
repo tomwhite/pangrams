@@ -6,12 +6,14 @@ public class PangramSearch {
 //        "Lottie White",
 //        "Emilia White",
 //        "Eliane Wigzell",
-        "Tom White",
+//        "Tom White",
 //        "Lottie",
 //        "Emilia",
 //        "Millie",
 //        "Eliane",
 //        "Tom",
+//        "Will and Donna"
+        "Will & Donna"
     };
     for (String name : names) {
       String[] prologues = {
@@ -23,7 +25,15 @@ public class PangramSearch {
           String.format("This pangram for %s features", name),
           String.format("This pangram for %s shows", name),
           String.format("This pangram for %s totals", name),
-          String.format("This pangram for %s enumerates", name),
+          String.format("This pangram to %s contains", name),
+          String.format("This pangram to %s lists", name),
+          String.format("This pangram to %s includes", name),
+          String.format("This pangram to %s has", name),
+          String.format("This pangram to %s uses", name),
+          String.format("This pangram to %s features", name),
+          String.format("This pangram to %s shows", name),
+          String.format("This pangram to %s totals", name),
+          //String.format("This pangram for %s enumerates", name),
       };
       String[] connectives = {
           "and", "&"
